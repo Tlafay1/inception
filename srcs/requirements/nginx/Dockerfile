@@ -2,6 +2,9 @@ FROM debian:buster
 
 RUN apt-get update && \
 	apt install nginx -y && \
-    apt-get clean
+	apt-get clean && \
+	service nginx start
 
-CMD sleep infinity
+EXPOSE 80
+
+ENTRYPOINT ["nginx", "-g", "daemon off;"]
