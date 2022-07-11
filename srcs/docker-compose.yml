@@ -2,24 +2,32 @@ version: "3.8"
 
 networks:
     inception:
+        name: inception
+        driver: bridge
 
 
-services: 
+services:
     nginx:
         container_name: nginx
         ports:
             - "80:80"
         networks:
             - inception
-        build:
-            context: .
-            dockerfile: requirements/nginx/Dockerfile
+        build: requirements/nginx
+        restart: unless-stopped
     mariadb:
         container_name: mariadb
-        ports:
-            - "3306:3306"
+        depends_on:
+            - nginx
         networks:
             - inception
-        build:
-            context: .
-            dockerfile: requirements/mariadb/Dockerfile
+        build: requirements/mariadb
+        restart: unless-stopped
+    wordpress:
+        container_name: wordpress
+        depends_on:
+               - mariadb
+        networks:
+            - inception
+        build: requirements/wordpress
+        restart: unless-stopped
