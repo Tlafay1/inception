@@ -22,6 +22,8 @@ services:
         networks:
             - inception
         build: requirements/mariadb
+        volumes:
+            - 
         restart: unless-stopped
     wordpress:
         container_name: wordpress
