@@ -8,6 +8,7 @@ networks:
 services:
     nginx:
         container_name: nginx
+        env_file: .env
         ports:
             - "80:80"
         networks:
@@ -16,27 +17,36 @@ services:
         restart: unless-stopped
     mariadb:
         container_name: mariadb
+        env_file: .env
         depends_on:
             - nginx
         networks:
             - inception
         build: requirements/mariadb
-        environment:
-            MYSQL_ROOT_PASSWORD: somewordpress
-            MYSQL_DATABASE: wordpress
-            MYSQL_USER: wordpress
-            MYSQL_PASSWORD: wordpress
         restart: unless-stopped
+        # volumes:
+        #     - mariadb:/var/lib/mysql
     wordpress:
         container_name: wordpress
+        env_file: .env
         depends_on:
                - mariadb
         networks:
             - inception
         build: requirements/wordpress
-        environment:
-            WORDPRESS_DB_HOST: db:3306
-            WORDPRESS_DB_USER: wordpress
-            WORDPRESS_DB_PASSWORD: wordpress
-            WORDPRESS_DB_NAME: wordpress
         restart: unless-stopped
+        volumes:
+            - wordpress:/var/www/html
+volumes:
+    wordpress:
+        driver: local
+        driver_opts:
+            type: none
+            device: /home/tlafay/data/wordpress
+            o: bind
+    mariadb:
+        driver: local
+        driver_opts:
+            type: none
+            device: /home/tlafay/data/mariadb
+            o: bind
