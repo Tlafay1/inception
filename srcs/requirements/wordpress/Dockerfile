@@ -12,7 +12,6 @@ RUN mkdir -p /var/www/html && \
 
 COPY tools/wordpress_setup.sh /tmp/wordpress_setup.sh
 
-
 WORKDIR /var/www/html
 
 EXPOSE 9000
