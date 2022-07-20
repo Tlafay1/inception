@@ -15,14 +15,18 @@ services:
             - inception
         build: requirements/nginx
         restart: unless-stopped
+        volumes:
+            - wordpress:/var/www/wordpress
     mariadb:
         container_name: mariadb
         env_file: .env
-        depends_on:
-            - nginx
         networks:
             - inception
-        build: requirements/mariadb
+        build: 
+            context: requirements/mariadb
+            args:
+                - MYSQL_ROOT_PASS=${MYSQL_ROOT_PASS}
+                - MYSQL_PASSWORD=${MYSQL_PASSWORD}
         restart: unless-stopped
         volumes:
             - mariadb:/var/lib/mysql
