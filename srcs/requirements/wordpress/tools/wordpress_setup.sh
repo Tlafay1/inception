@@ -1,15 +1,11 @@
 wp core download --allow-root
 
-wp core config --dbhost=mariadb \
-			--dbname=wordpress \
-			--dbuser=tlafay \
-			--dbpass=tlafaypass \
-			--allow-root
+mv /tmp/wp-config.php /var/www/html/wp-config.php
 
 wp core install --url="localhost"  \
 				--title="Blog Title" \
 				--admin_user="tlafay" \
-				--admin_password="inception" \
+				--admin_password=$WP_PASS \
 				--admin_email="blabla@blabla.fr"\
 				--allow-root
 

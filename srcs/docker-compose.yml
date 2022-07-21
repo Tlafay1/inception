@@ -11,12 +11,13 @@ services:
         env_file: .env
         ports:
             - "80:80"
+            - "443:443"
         networks:
             - inception
         build: requirements/nginx
         restart: unless-stopped
         volumes:
-            - wordpress:/var/www/wordpress
+            - wordpress:/var/www/html
     mariadb:
         container_name: mariadb
         env_file: .env

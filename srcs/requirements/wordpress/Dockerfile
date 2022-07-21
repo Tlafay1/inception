@@ -12,6 +12,10 @@ RUN mkdir -p /var/www/html && \
 
 COPY tools/wordpress_setup.sh /tmp/wordpress_setup.sh
 
+COPY conf/www.conf /etc/php/7.3/fpm/pool.d/www.conf
+
+COPY conf/wp-config.php /tmp/wp-config.php
+
 WORKDIR /var/www/html
 
 EXPOSE 9000
