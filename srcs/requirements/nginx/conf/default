@@ -1,5 +1,6 @@
 server {
-    server_name localhost;
+    server_name tlafay.42.fr;
+    server_name_in_redirect off;
     
     root /var/www/html;
 
@@ -26,22 +27,22 @@ server {
     }
 }
 
+#server { 
+
+#    listen 80; 
+
+#    server_name localhost; 
+
+#   return 301 https://$server_name$request_uri;
+
+#}
+
 server { 
 
-    listen 80; 
+    listen 443;
 
-    server_name localhost; 
+    server_name tlafay.42.fr; 
 
-    return 301 https://$server_name$request_uri;
+    return 301 https://tlafay.42.fr$request_uri;
 
 }
-
-# server { 
-
-#     listen 443; 
-
-#     server_name tlafay.42.fr; 
-
-#     return 301 https://tlafay.42.fr$request_uri;
-
-# }
