@@ -27,8 +27,8 @@ services:
         build: 
             context: requirements/mariadb
             args:
-                - MYSQL_ROOT_PASS=rootpass
-                - MYSQL_PASSWORD=tlafaypass
+                - MYSQL_ROOT_PASS=${MYSQL_ROOT_PASS}
+                - MYSQL_PASSWORD=${MYSQL_PASSWORD}
         restart: unless-stopped
         volumes:
             - mariadb:/var/lib/mysql

@@ -2,7 +2,7 @@ wp core download --allow-root
 
 mv /tmp/wp-config.php /var/www/html/wp-config.php
 
-wp core install --url="localhost"  \
+wp core install --url="tlafay.42.fr"  \
 				--title="Blog Title" \
 				--admin_user="tlafay" \
 				--admin_password=$WP_PASS \
