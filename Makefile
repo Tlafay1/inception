@@ -1,6 +1,6 @@
 all: 
 	sudo mkdir -p /home/tlafay/data/wordpress
-	sudo mkdir -p /home/tlafay/data/mysql
+	sudo mkdir -p /home/tlafay/data/mariadb
 	docker-compose -f ./srcs/docker-compose.yml up -d --build
 
 down:
